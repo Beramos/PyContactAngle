@@ -1,5 +1,7 @@
 name: Binder pre-build
-on: push
+on:
+  push:
+    branches: ['master']
 
 jobs:
   binder:
