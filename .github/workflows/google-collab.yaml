@@ -11,15 +11,15 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   updateBranch:
-  runs-on: ubuntu-latest
-  steps:
-  - name: Update collab branch
-    uses: actions/checkout@master
-    uses: Embraser01/update-git-branch-action@v1.0.0
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update collab branch
+      uses: actions/checkout@master
+      uses: Embraser01/update-git-branch-action@v1.0.0
 
-    if: github.ref == 'refs/heads/master'
-    with:
-      branch: staging
-      force: 1 # To push-force to the branch
-      githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
+      if: github.ref == 'refs/heads/master'
+      with:
+        branch: staging
+        force: 1 # To push-force to the branch
+        githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
 
