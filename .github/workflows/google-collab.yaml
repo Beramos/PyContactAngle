@@ -1,16 +1,32 @@
 on: 
     push:
       branches: ['master']
-name: Update prod branch on release
-jobs:
-  updateBranch:
-    name: Update staging branch
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: Embraser01/update-git-branch-action@v1.0.0
-      if: github.ref == 'refs/heads/master'
-      with:
-        branch: staging
-        force: 1 # To push-force to the branch
-        githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
+
+jobs:      
+# This workflow contains a single job called "build"
+    build:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - uses: actions/checkout@v2
+
+        # Runs commands using the runners shell
+        - name: Run the build php script
+          run: |
+            mkdir build
+            cp young-dupre.ipynb  build/young-dubre.ipynb
+            sed -i '2 r .github/collab-prefix.txt' build/young-dubre.ipynb
+
+        - name: Commit files # transfer the new html files back into the repository
+          run: |
+            git config --local user.name "brdjaegh"
+            git add ./build
+            git commit -m "Updating the google collab notebook :wrench:"
+        - name: Push changes # push the output folder to your repo
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            force: true
