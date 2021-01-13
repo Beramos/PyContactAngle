@@ -13,13 +13,16 @@ jobs:
   updateBranch:
     runs-on: ubuntu-latest
     steps:
-    - name: Update collab branch
-      uses: actions/checkout@master
-      uses: Embraser01/update-git-branch-action@v1.0.0
-
-      if: github.ref == 'refs/heads/master'
-      with:
-        branch: staging
-        force: 1 # To push-force to the branch
-        githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+ 
+      - name: Update collab branch
+        uses: Embraser01/update-git-branch-action@v1.0.0
+        if: github.ref == 'refs/heads/master'
+        with:
+          branch: staging
+          force: 1 # To push-force to the branch
+          githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
 
