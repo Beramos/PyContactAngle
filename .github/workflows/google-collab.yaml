@@ -21,11 +21,11 @@ jobs:
 
         - name: Commit files # transfer the new html files back into the repository
           run: |
-            git config --local user.name "brdjaegh"
+            git config --local user.name "beramos"
             git add ./build
             git commit -m "Updating the google collab notebook :wrench:"
         - name: Push changes # push the output folder to your repo
-          uses: ad-m/github-push-action@master
+          uses: ad-m/github-push-action@collab
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             force: true
