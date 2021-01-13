@@ -16,7 +16,6 @@ jobs:
         # Runs commands using the runners shell
         - name: Run the build php script
           run: |
-            mkdir build
             cp young-dupre.ipynb  build/young-dubre.ipynb
             sed -i '2 r .github/collab-prefix.txt' build/young-dubre.ipynb
 
