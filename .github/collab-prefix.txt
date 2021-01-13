@@ -1,0 +1,8 @@
+  {
+   "cell_type": "code",
+   "execution_count": 99,
+   "metadata": {},
+   "outputs": [],
+   "source": ["!pip install pyswarm"]
+  },
+
