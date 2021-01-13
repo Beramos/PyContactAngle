@@ -25,7 +25,7 @@ jobs:
             git add ./build
             git commit -m "Updating the google collab notebook :wrench:"
         - name: Push changes # push the output folder to your repo
-          uses: ad-m/github-push-action@colab
+          uses: ad-m/github-push-action@master
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             force: true
